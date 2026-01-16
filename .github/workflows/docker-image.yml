@@ -22,4 +22,4 @@ jobs:
           context: . 
           file: ./Dockerfile 
           push: true 
-          tags: muralisocial123/ust-retail-app:v1.1.0
+          tags: kathar.rahul@gmail.com/ust-retail-app:v1.1.0
