@@ -1,0 +1,26 @@
+name: Creating a CI pipeline Buliding, Pushing the docker images
+on: [push,pull_request]
+jobs:
+  build:
+    run-on: ubuntu-latest
+  stpes:
+    - uses: Checkout code
+    - name: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      user: docker/login-action@v2
+      with:
+        username: ${{secrets.DOCKERHUB_USERNAME}}
+        password: ${{secrets.DOCKERHUB_PASSWORD}}
+
+    - name: Set up docker build 
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and Push docker images
+      uses: docker/build-pushactions@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: rahulkathar/ust-retail-app:v1.1.0
+    
